@@ -1,4 +1,4 @@
-require 'mechanize'
+require 'mechanize' # needs mechanize - sudo gem install mechanize
 
 @agent = Mechanize.new
 
