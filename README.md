@@ -1,4 +1,2 @@
 demo-poll
 --
-
-Initial
