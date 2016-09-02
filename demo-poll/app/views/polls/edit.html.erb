@@ -1,0 +1,28 @@
+<h1>Editing Poll</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr>
+    <th>Options</th>
+    <th>Votes</th>
+  </tr>
+  <tr>
+    <% @poll.options.each do |option| %>
+    <tr>
+      <td><%= option.title %></td>
+      <td><%= option.votes.count %></td>
+    </tr>
+    <% end %>
+    <form action="/polls/<%= @poll.id %>" method="POST">
+      <input type="hidden" name="_method" value="PUT">
+      <tr>
+        <td><input type="text" name="title" placeholder="New Option"></input></td>
+        <td><input type="submit" value="Create"></input></td>
+      </tr>
+    </form>
+  </tr>
+</table>
+
+<%= link_to 'Show', @poll %> |
+<%= link_to 'Back', polls_path %>

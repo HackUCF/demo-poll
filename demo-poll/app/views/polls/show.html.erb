@@ -1,0 +1,36 @@
+<h2>
+  <%= @poll.title %> 
+</h2>
+
+<h4>
+  <%= @poll.description %> 
+</h4>
+
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Options</th>
+      <th>Votes</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% opts = @poll.options.sort_by { |o| [o.score, o.created_at]} %>
+
+      <% opts.reverse.each do |option| %>
+      <tr>
+        <td><%= option.title %></td>
+        <td><%= option.votes.count %></td>
+        <form action="/polls/<%= @poll.id %>/vote" method="POST">
+          <input type="hidden" value="<%= option.id %>" name="option"></input>
+          <td><input type="submit" value="Vote!"></input></td>
+        </form>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add Option', "/polls/#{@poll.id}/edit" %> |
+<%= link_to 'Reset', "/polls/#{@poll.id}/reset" %> |
+<%= link_to 'Back', polls_path %>
